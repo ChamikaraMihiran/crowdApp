@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Request Item</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="page-request-items">
+  <ion-card>
+    <ion-card-header>
+      <h1>
+        Request Item Details
+      </h1>
+    </ion-card-header>
+    <ion-list>
+      <ion-item>
+        <ion-label>Item Name :</ion-label>
+        <ion-input type="text" [(ngModel)]="itemName"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Item Type :</ion-label>
+        <ion-select [(ngModel)]="itemType">
+          <ion-option value="Laptop">Laptop</ion-option>
+          <ion-option value="Android mobile">Android mobile</ion-option>
+          <ion-option value="ios device">ios device</ion-option>
+          <ion-option value="Smart Watch">Smart Watch</ion-option>
+          <ion-option value="IOT device">IOT device</ion-option>
+          <ion-option value="Other">Other</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>ItemsNeeded :</ion-label>
+        <ion-input type="number" min="1" [(ngModel)]="itemsNeeded"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label>Request Reason :</ion-label>
+        <ion-textarea type="requestReason" [(ngModel)]="requestReason"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <div padding>
+      <button ion-button (click)="onRequestSubmit()">Send Request</button>
+    </div>
+  </ion-card>
+</ion-content>

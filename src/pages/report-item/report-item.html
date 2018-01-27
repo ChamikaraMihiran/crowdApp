@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Report Items</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="page-report-items">
+  <ion-card>
+    <ion-card-header>
+      <h1>
+        Report Items
+      </h1>
+    </ion-card-header>
+    <ion-list>
+      <ion-item>
+        <ion-label>Item Id :</ion-label>
+        <ion-input type="text" [(ngModel)]="itemId"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Item Name :</ion-label>
+        <ion-input type="text" [(ngModel)]="itemName"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label>Report Description :</ion-label>
+        <ion-textarea type="text" [(ngModel)]="reportDescription"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <div padding>
+      <button ion-button (click)="onReportSubmit()">Send Report</button>
+    </div>
+  </ion-card>
+</ion-content>

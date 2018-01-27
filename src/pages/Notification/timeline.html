@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>My Notification</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <timeline endIcon="call">
+    <timeline-item *ngFor="let item of items">
+      <ion-icon name="alarm"></ion-icon>
+      <ion-card>
+        <ion-card-header>
+          Notification {{item.day}} 
+        </ion-card-header>
+        <ion-card-content>
+          {{item.msg}} - {{item.itemId}}
+        </ion-card-content>
+      </ion-card>
+    </timeline-item>
+
+  </timeline>
+</ion-content>

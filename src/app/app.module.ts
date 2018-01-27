@@ -6,6 +6,10 @@ import { MyApp } from './app.component';
 import { MODULES, PROVIDERS } from './app.imports';
 import { AuthProvider } from '../providers/auth/auth';
 import { HttpModule } from '@angular/http';
+import { NotificationProvider } from '../providers/notification/notification';
+import { RequestItemsProvider } from '../providers/request-items/request-items';
+import { ReportItemProvider } from '../providers/report-item/report-item';
+import { ValidationsProvider } from '../providers/validations/validations';
 
 @NgModule({
   declarations: [
@@ -23,6 +27,10 @@ import { HttpModule } from '@angular/http';
     MyApp,
   ],
   providers: [PROVIDERS, { provide: ErrorHandler, useClass: IonicErrorHandler },
-    AuthProvider]
+    AuthProvider,
+    NotificationProvider,
+    RequestItemsProvider,
+    ReportItemProvider,
+    ValidationsProvider]
 })
 export class AppModule { }

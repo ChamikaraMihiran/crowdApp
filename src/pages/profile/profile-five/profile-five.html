@@ -1,5 +1,8 @@
 <ion-header>
     <ion-navbar color="primary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
         <ion-title>My Profile</ion-title>
     </ion-navbar>
 </ion-header>
@@ -9,7 +12,7 @@
     <div class="main-content" text-wrap text-center>
         <div class="circular"></div>
         <h2>{{username}}</h2>
-        <p>{{ employeeId }} &bull; {{user.occupation}}  {{user.location}}</p>
+        <p>{{ employeeId }} &bull; {{user.occupation}}</p>
         <p class="profile-description">{{user.description}}</p>
         <hr>
         <ion-list no-lines>
@@ -17,39 +20,22 @@
                 <ion-icon name="mail" color="primary" item-start></ion-icon>
                 <p>Email</p>
                 {{email}}
-                <a button ion-button href="mailto:{{email}}" color="primary" item-end medium>Open App</a>
             </ion-item>
             <ion-item>
-                <ion-icon item-start name="call" color="danger"></ion-icon>
-                <p>Mobile</p>
-                {{user.phone}}
-                <a button ion-button href="tel:{{user.phone}}" color="danger" item-end medium>Poke me</a>
-            </ion-item>
-            <ion-item>
-                <ion-icon item-start name="logo-whatsapp" color="secondary"></ion-icon>
-                <p>Whatsapp</p>
-                {{user.whatsapp}}
-                <a button ion-button color="secondary" item-end medium href="whatsapp://send?text=Hi from ionic&phone=+{{user.phone}}&abid=+{{user.phone}}">Open App</a>
-            </ion-item>
-            <ion-item>
-                <ion-icon item-start name="pin" color="twitter"></ion-icon>
-                <p>{{user.address}}</p>
+                <ion-icon name="ios-contact" color="primary" item-start></ion-icon>
+                <p>Employee Id</p>
+                {{employeeId}}
             </ion-item>
         </ion-list>
-        <h2>Get in touch</h2>
-        <hr>
-        <a href="#" button ion-button block color="linkedin" icon-start>
-            <ion-icon name='logo-linkedin'></ion-icon>
-            LinkedIn
-        </a>
-        <a href="#" button ion-button block color="fb" icon-start>
-            <ion-icon name='logo-facebook'></ion-icon>
-            Facebook
-        </a>
-        <a href="#" button ion-button block color="danger" icon-start>
-            <ion-icon name='logo-youtube'></ion-icon>
-            Youtube
-        </a>
+        <ion-list>
+            <ion-item>
+                <ion-icon name='power' item-start></ion-icon>
+                <button ion-button (click)="logOut()" item-end>
+                    Logout
+                </button>
+            </ion-item>
+        </ion-list>
+
     </div>
 
 </ion-content>

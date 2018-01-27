@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
+import { AuthProvider } from '../../../providers/auth/auth';  
 
 @IonicPage()
 @Component({
@@ -9,21 +10,21 @@ import { NavController, NavParams, IonicPage } from 'ionic-angular';
 export class ProfileFivePage {
 
   user = {
-    profileImage: 'assets/img/avatar/chami.jpg',
+    profileImage: 'assets/img/profile/profile.png',
     coverImage: 'assets/img/background/background-5.jpg',
     occupation: 'Designer',
-    location: 'Seattle, WA',
-    description: 'Passionate Designer. Recently focusing on developing mobile hybrid apps and web development.',
-    address: '27 King\'s College Cir, Toronto, ON M5S, Canada',
-    phone: '555 555 555',
-    whatsapp: '555 555 555',
+    description: 'Passionate Designer. Recently focusing on developing mobile hybrid apps and web development.'
+    
   };
 
   public username:string;
   public email:string;
   public employeeId:string;
+  public LoginPage = 'LoginSliderPage';
   
-  constructor(public navCtrl: NavController) {
+  
+  constructor(public navCtrl: NavController,
+              public auth: AuthProvider) {
     
     }
  
@@ -37,6 +38,11 @@ export class ProfileFivePage {
      this.username = user.username;
      this.email = user.email;
      this.employeeId = user.employeeId;
+   }
+
+   logOut(){
+    this.auth.logout();
+    this.navCtrl.setRoot(this.LoginPage);
    }
  }
  

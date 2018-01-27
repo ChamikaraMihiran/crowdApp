@@ -4,12 +4,12 @@ import { Component, ViewChild } from '@angular/core';
 import { MenuController,AlertController, App, LoadingController, NavController, 
         Slides, IonicPage, NavParams } from 'ionic-angular';
 import { AuthProvider } from '../../../providers/auth/auth';        
+import { ValidationsProvider } from '../../../providers/validations/validations';
 
 @IonicPage(
   {
-    name: 'LoginSliderPage'   //
-  }
-  )
+    name: 'LoginSliderPage'   
+  })
 
 @Component({
   selector: 'page-login-slider',
@@ -42,6 +42,7 @@ export class LoginSliderPage {
     public menuCtrl: MenuController,
     public navCtrl: NavController,
     private auth: AuthProvider,
+    public validationsProvider: ValidationsProvider,
   ) { }
 
   // Slider methods
@@ -86,11 +87,39 @@ export class LoginSliderPage {
     const user = {
 			email: this.email,
 			password: this.password
-		}
+    }
+    
+    // Required Fields
+    if(!this.validationsProvider.validateLogin(user)){
+      this.password = "";
+      this.email = "";
+      let alert = this.alertCtrl.create({
+        title: 'Login Failed',
+        subTitle: 'All fields are required',
+        buttons: ['OK']
+      })
+      alert.present();
+      return false;
+    }
+
+    // Required Fields
+    if(!this.validationsProvider.validateEmail(user.email)){
+      this.email = "";
+      this.password = "";
+      let alert = this.alertCtrl.create({
+        title: 'Login Failed',
+        subTitle: 'Invalid email provided',
+        buttons: ['OK']
+      })
+      alert.present();
+      return false;
+    }
+
+
 		this.auth.authenticateUser(user).subscribe(data => {
 			if (data.success) {
 				this.auth.storeUserData(data.token, data.user);
-				//console.log(data.token);
+				console.log(data.token);
 				let alert = this.alertCtrl.create({
 					title: 'Login Success',
 					subTitle: data.message,

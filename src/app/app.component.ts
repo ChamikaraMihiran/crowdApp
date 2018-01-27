@@ -11,12 +11,14 @@ import { AuthProvider } from '../providers/auth/auth';
   templateUrl: 'app.html'
 })
 export class MyApp {
+  
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any;
   activePage = new Subject();
   public authToken: any;
-  public username: string;
+  public email: string;
+  public user: any;
 
   MENU = {
     DEFAULT: 'menu-components',
@@ -27,7 +29,7 @@ export class MyApp {
   pages: Array<{ title: string, component: any, active: boolean, icon: string }>;
   rightMenuItems: Array<{ icon: string, active: boolean }>;
   state: any;
-  placeholder = 'assets/img/avatar/chami.jpg';
+  placeholder = 'assets/img/profile/profile.png';
   chosenPicture: any;
 
   constructor(
@@ -46,17 +48,14 @@ export class MyApp {
       this.rootPage = 'LoginSliderPage';
     }
 
-    
+
     this.pages = [
       { title: 'Home', component: 'HomePage', active: true, icon: 'home' },
-      { title: 'Miscellaneous', component: 'MiscellaneousListPage', active: false, icon: 'bookmarks' },
-      { title: 'Modal with Navigation', component: 'ModalWithNavigationPage', active: false, icon: 'book' },
       { title: 'Scan QR', component: 'BarcodeScannerPage', active: false, icon: 'camera' },
-      { title: 'Popup Modal', component: 'PopupModalsPage', active: false, icon: 'basket' },
-      { title: 'Popup Menu', component: 'PopupMenuListPage', active: false, icon: 'beer' },
-      { title: 'Profile', component: 'ProfileListPage', active: false, icon: 'camera' },
+      { title: 'Request Item', component: 'RequestItemsPage', active: false, icon: 'cart' },
+      { title: 'Report Items', component: 'ReportItemPage', active: false, icon: 'cart' },
+      { title: 'Profile', component: 'ProfileFivePage', active: false, icon: 'camera' },
       { title: 'Notification', component: 'TimelinePage', active: false, icon: 'alarm' },
-      { title: 'Theming', component: 'ThemingPage', active: false, icon: 'power' },
       { title: 'Login', component: 'LoginSliderPage', active: false, icon: 'archive' },
     ];
 
@@ -103,7 +102,10 @@ export class MyApp {
   }
 
   getUser(){
-    var user = JSON.parse(window.localStorage.getItem('user'));
-    this.username = user.email;
+    if (this.auth.authToken){
+      var user = JSON.parse(window.localStorage.getItem('user'));
+      this.email = user.email;
+    }
+    
   }
 }
